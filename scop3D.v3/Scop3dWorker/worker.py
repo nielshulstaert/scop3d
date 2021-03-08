@@ -775,7 +775,10 @@ def getUniprotVariants(uniprotID, variantsFile, verbose):
         position = int(feature['begin'])
         variant['position'] = position
         variant['wildType'] = feature['wildType']
-        variant['alternativeSequence'] = feature['alternativeSequence']
+        if 'alternativeSequence' in feature:
+            variant['alternativeSequence'] = feature['alternativeSequence']
+        else:
+            variant['alternativeSequence'] = "*"
         variant['consequence'] = feature['consequenceType']
         if (position not in features):
             features[position] = []
